@@ -1,0 +1,29 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank: { groups: [new, edit] }
+            - Length: { min: 3, groups: [new] }
+        country:
+            - NotBlank: { groups: [new, edit] }
+        latitude:
+            - NotBlank: { groups: [new, edit] }
+            - Range: { min: -90, max: 90, groups: [new, edit] }
+        longitude:
+            - NotBlank: { groups: [new, edit] }
+            - Range: { min: -180, max: 180, groups: [new, edit] }
+
+App\Entity\Measurement:
+    properties:
+        location:
+            - NotNull: { groups: [new] }
+        date:
+            - NotBlank: { groups: [new, edit] }
+        celsius:
+            - NotBlank: { groups: [new, edit] }
+            - Range: { min: -90, max: 60, groups: [new, edit] }
+        humidity:
+            - Range: { min: 0, max: 100, groups: [edit] }
+        pressure:
+            - Range: { min: 800, max: 1100, groups: [new, edit] }
+        windSpeed:
+            - PositiveOrZero: { groups: [new, edit] }
